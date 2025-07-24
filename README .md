@@ -1,10 +1,10 @@
-# 🏆 Redis Tabanlı Liderlik Tablosu (Leaderboard) API
+#  Redis Tabanlı Liderlik Tablosu (Leaderboard) API
 
 Bu proje, Redis veritabanı kullanarak yüksek skorlara sahip kullanıcıların sıralandığı bir **liderlik tablosu (leaderboard)** API'si ve frontend arayüzüdür. ASP.NET Core ile backend, React ile frontend geliştirilmiştir. Veriler Redis'in `SortedSet` veri yapısı kullanılarak saklanır ve sorgulanır.
 
 ---
 
-## 🚀 Özellikler
+##  Özellikler
 
 - Skor ekleme veya güncelleme (sadece daha yüksekse)
 - Liderlik tablosunu listeleme
@@ -16,7 +16,7 @@ Bu proje, Redis veritabanı kullanarak yüksek skorlara sahip kullanıcıların 
 
 ---
 
-## 🧱 Teknolojiler
+## Teknolojiler
 
 | Katman | Teknoloji |
 |--------|-----------|
@@ -27,7 +27,7 @@ Bu proje, Redis veritabanı kullanarak yüksek skorlara sahip kullanıcıların 
 
 ---
 
-## ⚙️ Kurulum
+## Kurulum
 
 ### 1. Projeyi klonlayın
 
@@ -63,36 +63,36 @@ npm start
 
 ---
 
-## 📬 API Endpoint’leri
+##  API Endpoint’leri
 
-### ▶️ Skor Ekle (veya Güncelle)
+### Skor Ekle (veya Güncelle)
 ```
 POST /score/{username}/{score}
 ```
 
-### 📋 Tüm Kullanıcıları Listele
+###  Tüm Kullanıcıları Listele
 ```
 GET /leaderboard
 ```
 
-### 🔝 En İyi N Kullanıcı
+###  En İyi N Kullanıcı
 ```
 GET /leaderboard/top/{n}
 ```
 
-### 🔍 Belirli Kullanıcının Sırası ve Skoru
+###  Belirli Kullanıcının Sırası ve Skoru
 ```
 GET /leaderboard/user/{username}
 ```
 
-### ❌ Skor Sil
+###  Skor Sil
 ```
 DELETE /score/{username}
 ```
 
 ---
 
-## 🖥️ Frontend Görsel Özellikler
+##  Frontend Görsel Özellikler
 
 - Arama kutusu ile kullanıcı filtreleme
 - Skor gönderme formu (kullanıcı adı + skor)
@@ -101,7 +101,7 @@ DELETE /score/{username}
 
 ---
 
-## 🧪 Geliştirme ve Test
+##  Geliştirme ve Test
 
 - API testleri için [Postman](https://www.postman.com/) kullanıldı
 - Frontend React bileşenleri düzenli olarak test edildi
@@ -109,7 +109,7 @@ DELETE /score/{username}
 
 ---
 
-## 📌 Notlar
+##  Notlar
 
 - Bu proje yalnızca demo amaçlıdır. Gerçek uygulamalarda kimlik doğrulama ve yetkilendirme mekanizmaları gereklidir.
 - Veri kaybı yaşamamak için Redis volume kullanılmıştır (Docker'da `redis-data` volume tanımı).

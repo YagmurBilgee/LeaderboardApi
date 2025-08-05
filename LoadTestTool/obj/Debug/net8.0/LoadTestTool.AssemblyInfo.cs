@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LoadTestTool")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dd5b00f1d86fe8e953a58c6feafe87fc4ef69310")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6d6631129857e795e2f6a11b0310a76720f5ec95")]
 [assembly: System.Reflection.AssemblyProductAttribute("LoadTestTool")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LoadTestTool")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

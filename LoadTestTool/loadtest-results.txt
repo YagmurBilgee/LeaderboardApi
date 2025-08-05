@@ -100,3 +100,9 @@ Ortalama: 24,02 ms
 Hata: 0
 
 ---
+– 20 Kullanıcı
+Süre: 0,12 saniye
+Ortalama: 5,91 ms
+Hata: 0
+
+---

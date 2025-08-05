@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "LoadTestTool/1.0.0": {
+        "runtime": {
+          "LoadTestTool.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "LoadTestTool/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

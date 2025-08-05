@@ -2,9 +2,7 @@ using StackExchange.Redis;
 using WebApplication1.Models;
 using System.Collections.Generic;//<list> yapısını kullanmak için
 using System.Linq;//.Select(), .Where(), .OrderBy() gibi LINQ metodları için
-/*RedisService sınıfı Redis ile tüm etkileşimi yöneten servistir.
-Kullanıcı skorları eklenir, silinir, sıralanır, sorgulanır.
-Tüm işlemler interface’e uyar, böylece uygulamanın başka katmanları Redis’i bilmeden çalışabilir.*/
+/*Redis'te sadece tek bir Sorted Set vardı. Tüm kullanıcılar burada toplanıyordu(leaderboard). şimdi her dersin skoru ayrı tutulacak. yani key artık dinamik hale geldi.  */
 namespace WebApplication1.Services
 {
     public class RedisService : IRedisService//RedisService sınıfı, IRedisService arayüzünü uygular.
@@ -20,19 +18,21 @@ namespace WebApplication1.Services
 
         }
 
-        public void AddScore(string username, int score)
+        public void AddScore(string course, string username, int score)
         {
-            var existingScore = _db.SortedSetScore("leaderboard", username);
+            var key = $"leaderboard:{course}";
+            var existingScore = _db.SortedSetScore(key, username);
 
             if (existingScore == null || score > existingScore)
             {
-                _db.SortedSetAdd("leaderboard", username, score);//edis’te ZADD komutu gibi davranır, skor ekler veya günceller.
+                _db.SortedSetAdd(key, username, score);//edis’te ZADD komutu gibi davranır, skor ekler veya günceller.
             }
         }
 
-        public List<LeaderboardEntry> GetLeaderboard()
+        public List<LeaderboardEntry> GetLeaderboard(string course)
         {
-            var entries = _db.SortedSetRangeByRankWithScores("leaderboard", order: Order.Descending);
+            var key = $"leaderboard:{course}";
+            var entries = _db.SortedSetRangeByRankWithScores(key, order: Order.Descending);
             //Redis’ten sıralı skor listesini çeker.
             return entries
                 .Select((entry, index) => new LeaderboardEntry//Sonuç bir LeaderboardEntry listesine dönüştürülür.
@@ -44,19 +44,21 @@ namespace WebApplication1.Services
                 .ToList();
         }
 
-        public string? GetUserRank(string username)
+        public string? GetUserRank(string course, string username)
         {
-            var rank = _db.SortedSetRank("leaderboard", username, Order.Descending);
-            var score = _db.SortedSetScore("leaderboard", username);
+            var key = $"leaderboard:{course}";
+            var rank = _db.SortedSetRank(key, username, Order.Descending);
+            var score = _db.SortedSetScore(key, username);
 
             if (rank == null || score == null)
                 return null;
 
             return $"{username} is ranked #{rank + 1} with score {score}";
         }
-        public List<LeaderboardEntry> GetTopN(int count)
+        public List<LeaderboardEntry> GetTopN(string course, int count)
         {
-            var entries = _db.SortedSetRangeByRankWithScores("leaderboard", 0, count - 1, Order.Descending);
+            var key = $"leaderboard:{course}";
+            var entries = _db.SortedSetRangeByRankWithScores(key, 0, count - 1, Order.Descending);
             return entries
                 .Select((entry, index) => new LeaderboardEntry
                 {
@@ -66,13 +68,28 @@ namespace WebApplication1.Services
                 })
                 .ToList();
         }
-        public void DeleteScore(string username)
-        {//SortedSetRemove(...) ile kullanıcıyı Redis’ten kaldırır.
-            _db.SortedSetRemove("leaderboard", username);
+        public void DeleteScore(string course, string username)
+        {
+            var key = $"leaderboard:{course}";
+            _db.SortedSetRemove(key, username);
         }
-/*RedisService, Redis SortedSet yapısıyla çalışan bir servis sınıfıdır. 
-Sıralama, silme, güncelleme gibi işlemler bu sınıf aracılığıyla yapılır.
- Uygulamada başka hiçbir sınıf doğrudan Redis’e bağlanmaz*/
+
+        public List<string> GetAllCourses()
+        {//Redis’teki leaderboard:* patternine uyan tüm key’leri çeker, sonra sadece ders adlarını alır.
+
+            var redisHost = Environment.GetEnvironmentVariable("REDIS_HOST") ?? "localhost";
+            var server = ConnectionMultiplexer.Connect($"{redisHost}:6379").GetServer(redisHost, 6379);
+            var keys = server.Keys(pattern: "leaderboard:*")
+                .Select(k => k.ToString().Replace("leaderboard:", ""))
+                .ToList();
+
+            return keys;
+        }
+        public void DeleteByScoreRange(string course, double minScore, double maxScore)
+        {
+            var key = $"leaderboard:{course}";
+            _db.SortedSetRemoveRangeByScore(key, minScore, maxScore);
+        }
 
     }
-}
+} 

@@ -1,0 +1,102 @@
+Test: LoadTestTool ile eşzamanlı istek gönderimi
+
+-10 istek gönderildi
+-Ortalama süre: 81 ms
+-Hata: 0
+-Veriler frontendde doğru kurs altında ve sıralı şekilde görüntülendi.
+Sistem şu anda 10 eşzamanlı isteği rahatlıkla karşılayabiliyor.
+
+
+-30 istek gönderildi.
+-Geçen süre: 0,34 saniye
+-Hatalı istek sayısı: 0
+
+-50 istek gönderildi
+-Toplam süre: 0.37 saniye
+-Ortalama süre: 7.4 ms
+-Hatalı istek sayısı: 0
+
+– 2000 Kullanıcı
+Süre: 6,69 saniye
+Ortalama: 3,35 ms
+Hata: 0
+
+---
+– 10 Kullanıcı
+Süre: 0,30 saniye
+Ortalama: 30,25 ms
+Hata: 0
+
+---
+– 10000 Kullanıcı
+Süre: 9,19 saniye
+Ortalama: 0,92 ms
+Hata: 0
+
+---
+– 50000 Kullanıcı
+Süre: 44,81 saniye
+Ortalama: 0,90 ms
+Hata: 0
+
+---
+– 50 Kullanıcı
+Süre: 0,59 saniye
+Ortalama: 11,84 ms
+Hata: 0
+
+---
+– 10 Kullanıcı
+Süre: 0,13 saniye
+Ortalama: 12,77 ms
+Hata: 0
+
+---
+– 10 Kullanıcı
+Süre: 0,10 saniye
+Ortalama: 10,17 ms
+Hata: 0
+
+---
+– 10 Kullanıcı
+Süre: 0,10 saniye
+Ortalama: 10,04 ms
+Hata: 0
+
+---
+– 10 Kullanıcı
+Süre: 0,12 saniye
+Ortalama: 11,52 ms
+Hata: 0
+
+---
+– 1 Kullanıcı
+Süre: 0,08 saniye
+Ortalama: 83,50 ms
+Hata: 0
+
+---
+– 2 Kullanıcı
+Süre: 0,29 saniye
+Ortalama: 145,61 ms
+Hata: 0
+
+---
+– 50 Kullanıcı
+Süre: 0,19 saniye
+Ortalama: 3,89 ms
+Hata: 0
+
+---
+– 10 Kullanıcı
+Süre: 0,10 saniye
+Ortalama: 9,63 ms
+Hata: 0
+
+---
+– 10 Kullanıcı
+Süre: 0,24 saniye
+Ortalama: 24,02 ms
+Hata: 0
+
+---

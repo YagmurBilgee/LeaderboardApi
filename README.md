@@ -96,8 +96,6 @@ DELETE /score/{username}
 
 - Arama kutusu ile kullanıcı filtreleme
 - Skor gönderme formu (kullanıcı adı + skor)
-- Zebra desenli tablo görünümü
-- LC Waikiki renk paletine uygun tema (`#0074c8` mavi tonu)
 
 ---
 
@@ -118,5 +116,5 @@ DELETE /score/{username}
 
 ## 👤 Geliştirici
 
-> **Adın Soyadın**  
-> [LinkedIn](#) • [GitHub](#)
+> Yağmur Bilge Akköse
+> https://www.linkedin.com/in/ya%C4%9Fmur-bilge-akk%C3%B6se-9b1b63256/
